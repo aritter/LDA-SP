@@ -1,0 +1,16 @@
+Inference and Evaluation Code for Selectional Preferences using Topic Models
+Author: Alan Ritter
+aritter@cs.washington.edu
+
+Relevant paper:
+@InProceedings{ritter-mausam-etzioni:2010:ACL,
+  author    = {Ritter, Alan  and  Mausam  and  Etzioni, Oren},
+  title     = {A Latent Dirichlet Allocation Method for Selectional Preferences},
+  booktitle = {Proceedings of the 48th Annual Meeting of the Association for Computational Linguistics},
+  month     = {July},
+  year      = {2010},
+  address   = {Uppsala, Sweden},
+  publisher = {Association for Computational Linguistics},
+  pages     = {424--434},
+  url       = {http://www.aclweb.org/anthology/P10-1044}
+}

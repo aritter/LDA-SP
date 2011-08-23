@@ -1,0 +1,70 @@
+Data and Scripts for Pseudodisambiguation and Textual Inference Evaluation of Selectional Preferences
+
+***********************************************************
+* Pseudodisambiguation Evaluation
+***********************************************************
+
+**** Data Description ****
+The data is in two files, one for each argument of the binary
+relations:
+
+pseudodisambig_test_arg1
+pseudodisambig_test_arg2
+
+Each file is a tab-separated format with 3 fields:
+-relation
+-argument
+-label
+
+The label is either '+' for observed tuples, or '-' for pseudo-negatives
+(the argument was picked randomly)
+
+**** Evaluation Scripts ****
+Included is a script to score the data using LDA-SP:
+LdaPseudodisambig.py
+
+You can use this on either arg1 or arg2 as follows:
+python LdaPseudoDisambig.py pseudodisambig_test_arg1 1 > pseudodisambig_test_arg1_predictions
+python LdaPseudoDisambig.py pseudodisambig_test_arg2 2 > pseudodisambig_test_arg2_predictions
+
+This script will print out the input tuples in addition to the probability each tuple is
+not a distractor estimated using the model.
+
+In order to evaluate precision/recall using a specific threshold, you can use the script:
+prEval.py
+like so:
+> python prEval.py 0.8 pseudodisambig_test_arg1:pseudodisambig_test_arg1_predictions pseudodisambig_test_arg2:pseudodisambig_test_arg2_predictions 
+
+The first argument is the threshold, and the remaining arguments are files containing labeled/predicted data separated by a colon
+
+Finally if you want to generate a bunch of precision/recall points, I've included a script to do that too.  It works the same as above, but there's
+no need to specify a threshold:
+> python plotPr.py pseudodisambig_test_arg1:pseudodisambig_test_arg1_predictions pseudodisambig_test_arg2:pseudodisambig_test_arg2_predictions > pseudodisambig_pr.out
+
+The output contains the following fields:
+-threshold
+-precision
+-recall
+-f1
+
+***********************************************************
+* Textual Inference Evaluation
+***********************************************************
+
+**** Data Description ****
+The data is contained in the file ti_test.  Each row represents a candidate inference, and, containing the following tab-separated fields:
+-Antecedent arg1
+-Antecedent relation
+-Antecedent arg2
+-Consequent arg1
+-Consequent relation
+-Consequent arg2
+-label (good/bad inference rule application)
+
+**** Evaluation Scripts ****
+LdaTi.py produces predictions based on the LDA-SP model for each inference application.  You can use it like so:
+> python LdaTi.py ti_test > ti_test_predictions
+NOTE: this takes a little while to run (20 minutes or so)
+
+You can then evaluate precision/recall using the same scripts described above, for example:
+> python plotPr.py ti_test:ti_test_predictions: > ti_pr.out
