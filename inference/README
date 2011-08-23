@@ -1,0 +1,13 @@
+Code for inferring selectional preferences:
+
+scripts/tuples2docs.pl
+Convert (argument, predicate, argument) triples into correct format for inference.
+
+scripts/computeDist.py
+Read in dump of samples and prints out topics in human readable format.
+
+link_lda_300.c
+Inference with 300 topics.
+
+link_lda_300_mpi.c
+Parallelized version using MPI

@@ -35,7 +35,6 @@ open TUPLES, $tupleFile;
 #############################################################################
 # Predefined vocabulary 
 #############################################################################
-#if(@ARGV == 3) {
 if($a1vocab && $a2vocab) {
     open A1_VOCAB, $a1vocab;
     open A2_VOCAB, $a2vocab;
@@ -108,12 +107,6 @@ open ARG1, ">arg1";
 open ARG2, ">arg2";
 
 my @preds = keys %arg1docs;
-my @indices = grep { $preds[$_] =~ /was born in|consume|elected/ } 0..$#preds;
-my $next = 0;
-for my $i (@indices) {
-    ($preds[$next], $preds[$i]) = ($preds[$i], $preds[$next]);
-    $next++;
-}
 
 my @a1;
 my @a2;

@@ -1,10 +1,5 @@
 #!/usr/bin/python
 
-##############################################################################
-# Improved version of computeDist_link.pl which doesn't store all
-# the data in memory.
-##############################################################################
-
 import sys
 from optparse import OptionParser
 
